@@ -66,7 +66,6 @@ $(function () {
             .cropper(options) // 重新初始化裁剪区域
     })
 
-
     var art_state = '已发布'
     $('#btnSave2').on('click', function () {
         art_state = '草稿'
