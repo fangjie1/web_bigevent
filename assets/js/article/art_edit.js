@@ -17,6 +17,7 @@ $(function () {
             }
         })
     }
+
     // 初始化富文本编辑器
     initEditor()
     // 定义加载文章分类的方法
@@ -37,6 +38,7 @@ $(function () {
             }
         })
     }
+
     // 1. 初始化图片裁剪器
     var $image = $('#image')
     // 2. 裁剪选项
@@ -49,6 +51,7 @@ $(function () {
     $('#btnChooseImage').on('click', function () {
         $('#coverFile').click()
     })
+
     // 监听 coverFile 的 change 事件，获取用户选择的文件列表
     $('#coverFile').on('change', function (e) {
         // 获取到文件的列表数组
