@@ -1,12 +1,13 @@
 $(function () {
     var layer = layui.layer
     var form = layui.form
+    var data = JSON.parse(localStorage.getItem('data'))
+    form.val('formEdit', data)
+    var id = data.cate_id
+    $('#image').attr('src', 'http://api-breakingnews-web.itheima.net' + data.cover_img)
     // 初始化数据
     initData()
     function initData() {
-        var data = JSON.parse(localStorage.getItem('data'))
-        form.val('formEdit', data)
-        var id = data.cate_id
         $.ajax({
             method: 'GET',
             url: '/my/article/cates/' + id,
@@ -65,6 +66,7 @@ $(function () {
             .cropper(options) // 重新初始化裁剪区域
     })
 
+
     var art_state = '已发布'
     $('#btnSave2').on('click', function () {
         art_state = '草稿'
@@ -76,7 +78,6 @@ $(function () {
         // 2. 基于 form 表单，快速创建一个 FormData 对象
         var fd = new FormData($(this)[0])
         fd.append('id', data.Id)
-        fd.append('cover_img', data.cover_img)
         // 3. 将文章的发布状态，存到 fd 中
         fd.append('state', art_state)
         // 4. 将封面裁剪过后的图片，输出为一个文件对象
@@ -90,13 +91,12 @@ $(function () {
                 // 将 Canvas 画布上的内容，转化为文件对象
                 // 得到文件对象后，进行后续的操作
                 // 5. 将文件对象，存储到 fd 中
+
                 fd.append('cover_img', blob)
                 // 6. 发起 ajax 数据请求
                 publishArticle(fd)
             })
-        for (var key of fd.entries()) {
-            console.log(key[0] + ', ' + key[1]);
-        }
+
     })
     function publishArticle(fd) {
         $.ajax({
@@ -114,6 +114,7 @@ $(function () {
                 layer.msg('发布文章成功！')
                 // 发布文章成功后，跳转到文章列表页面
                 location.href = '/article/art_list.html'
+                layer.msg('发布文章成功！')
             }
         })
     }
