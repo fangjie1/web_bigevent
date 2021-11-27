@@ -9,7 +9,7 @@ $(function () {
             // 1. 清空本地存储中的 token
             localStorage.removeItem('token')
             // 2. 重新跳转到登录页面
-            location.href = '/login.html'
+            location.href = './login.html'
             // 关闭 confirm 询问框
             layer.close(index)
         })
@@ -29,7 +29,7 @@ function getUserInfo() {
             }
             // 调用 renderAvatar 渲染用户的头像
             renderAvatar(res.data)
-        },
+        }
     })
 }
 function renderAvatar(user) {
